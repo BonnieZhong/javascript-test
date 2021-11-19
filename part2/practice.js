@@ -12,7 +12,8 @@ function dummy () {
  * @returns {array}
  */
 function reverse (array) {
-  return [];
+  array.reverse();
+  return array;
 }
 
 /**
@@ -27,7 +28,7 @@ function reverse (array) {
  * 
  */
 function stringReverse (text) {
-  return '';
+  return text.split("").reverse().join("");
 }
 
 
@@ -42,8 +43,21 @@ function stringReverse (text) {
  * @returns {array}
  */
 function fibonacci (length) {
-  return [];
+  let data = [];
+  if (length >=2) {
+    data = [0, 1];
+    for(let i = 1; i < length-2; i++) {
+      let temp = data[i - 1] + data[i - 2];
+      data.push(temp);
+    }
+  } else if (length === 1) {
+    data = [0, 1];
+  } else {
+    data = [0];
+  }
+  return data;
 }
+
 
 /**
  * return the biggest number in the array
@@ -56,7 +70,7 @@ function fibonacci (length) {
  * @returns {number}
  */
 function biggest (array) {
-  return 0;
+  return Math.max.apply(Math, array);
 }
 
 /**
@@ -75,7 +89,11 @@ function biggest (array) {
  * @returns {array}
  */
 function range (start, end) {
-  return [];
+  let array = [];
+  for (let i = start; i < end; i++) {
+    array.push(i)
+  }
+  return array;
 }
 
 /**
@@ -92,7 +110,16 @@ function range (start, end) {
  * @returns {array}
  */
 function flatten (array) {
-  return [];
+  let newArr = [];
+  for (let i = 0; i < array.length; i++) {
+    if (Array.isArray(array[i])) {
+      let temp = flatten(array[i]);
+      temp.forEach(function(value){ newArr.push(value);})
+    } else {
+      newArr.push(array[i]);
+    }
+  }
+  return newArr;
 }
 
 module.exports = {
